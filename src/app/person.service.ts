@@ -11,8 +11,11 @@ export class PersonService {
   public GetPeople(): Person[] {
     return this._personList;
   }
-  public GetPersonById(): Person[] {
-    return this._personList;
+  public GetPersonById(id: number): Person {
+    return this._personList[id];
+  }
+  AddPerson(personToAdd: Person): void {
+    this._personList.push(personToAdd);
   }
 
   private _personList: Person[] = [

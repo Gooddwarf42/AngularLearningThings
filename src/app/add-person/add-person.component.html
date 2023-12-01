@@ -1,1 +1,9 @@
-<p>Add person form</p>
+<p>Adding a new person!</p>
+<form [formGroup]="addPersonFormGroup" (submit)="handleSubmit()">
+  <label for="id">Id:</label><input id="id" type="number" formControlName="id" />
+  <label for="name">Name:</label><input id="name" type="text" formControlName="name" />
+  <label for="surname">Surname:</label><input id="surname" type="text" formControlName="surname" />
+  <label for="age">Age:</label><input id="age" type="number" formControlName="age" />
+  <label for="isMimmo">Is Mimmo:</label><input id="isMimmo" type="checkbox" formControlName="isMimmo" />
+  <button>Add me!</button>
+</form>
