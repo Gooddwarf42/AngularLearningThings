@@ -1,4 +1,5 @@
 <p>Ecco una lista delle persone</p>
+<button (click)="HandleAddPersonCLick()">Add person</button>
 <app-person-list-item
   *ngFor="let person of personList"
   [person]="person">
