@@ -1,1 +1,3 @@
-<p>person-detail works!</p>
+<h1>Details of person n. {{person.id}}</h1>
+<p>This person is named {{person.name}} {{person.surname}}, and is {{person.age}} years old.</p>
+<p>Moreover this person is definitely <span *ngIf="!person.isMimmo">NOT</span> a Mimmo, therefore he/she is <span *ngIf="!person.isMimmo">NOT</span> worth of our esteem.</p>
