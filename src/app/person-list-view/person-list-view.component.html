@@ -1,3 +1,5 @@
-<p>person-list-view works!</p>
-<app-person-list-item *ngFor="let person of personList">
+<p>Ecco una lista delle persone</p>
+<app-person-list-item
+  *ngFor="let person of personList"
+  [person]="person">
 </app-person-list-item>
