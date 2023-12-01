@@ -6,6 +6,11 @@ import { PersonDetailComponent } from './person-list-view/person-detail/person-d
 export const routes: Routes = [
   {
     path: '',
+    redirectTo: '/list',
+    pathMatch: 'full'
+  },
+  {
+    path: 'list',
     component: PersonListViewComponent,
     title: 'View list'
   },
