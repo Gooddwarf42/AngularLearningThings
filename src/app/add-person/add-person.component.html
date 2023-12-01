@@ -1,5 +1,5 @@
 <p>Adding a new person!</p>
-<form [formGroup]="addPersonFormGroup" (submit)="handleSubmit()">
+<form [formGroup]="addPersonFormGroup" (ngSubmit)="handleSubmit()">
   <label for="id">Id:</label><input id="id" type="number" formControlName="id" />
   <label for="name">Name:</label><input id="name" type="text" formControlName="name" />
   <label for="surname">Surname:</label><input id="surname" type="text" formControlName="surname" />

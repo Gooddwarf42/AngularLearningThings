@@ -1,6 +1,19 @@
-<p>Ecco una lista delle persone</p>
-<button (click)="HandleAddPersonCLick()">Add person</button>
-<app-person-list-item
-  *ngFor="let person of personList"
-  [person]="person">
-</app-person-list-item>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-4">
+      <button class="btn btn-primary" (click)="HandleAddPersonCLick()">Add person</button>
+    </div>
+    <div class="col-sm-8">
+      <p class="fw-bold">Ecco una lista delle persone</p>
+    </div>
+  </div>
+
+  <div class="col">
+    <div class="card">
+      <div class="card-body">
+        <app-person-list-item *ngFor="let person of personList" [person]="person">
+        </app-person-list-item>
+      </div>
+    </div>
+  </div>
+</div>

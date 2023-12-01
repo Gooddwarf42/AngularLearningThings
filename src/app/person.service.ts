@@ -14,7 +14,7 @@ export class PersonService {
   public GetPersonById(id: number): Person {
     return this._personList[id];
   }
-  AddPerson(personToAdd: Person): void {
+  addPerson(personToAdd: Person): void {
     this._personList.push(personToAdd);
   }
 

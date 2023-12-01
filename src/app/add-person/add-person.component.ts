@@ -20,9 +20,9 @@ export class AddPersonComponent {
   ) {
   }
 
-  public addPersonFormGroup: FormGroup = new FormGroup({
-    id: new FormControl(this.personService.GetPeople().length),
-    name: new FormControl(''),
+  public addPersonFormGroup = new FormGroup({
+    id: new FormControl({value: this.personService.GetPeople().length, disabled: true}),
+    name: new FormControl<string>(''),
     surname: new FormControl(''),
     age: new FormControl(0),
     isMimmo: new FormControl(false),
@@ -32,13 +32,14 @@ export class AddPersonComponent {
 
   handleSubmit() {
     const personToAdd: Person = {
-      id: this.addPersonFormGroup.value.id ?? -1,
+      id: this.addPersonFormGroup.getRawValue().id ?? -1,
       name: this.addPersonFormGroup.value.name ?? '',
       surname: this.addPersonFormGroup.value.surname ?? '',
       age: this.addPersonFormGroup.value.age ?? -1,
       isMimmo: this.addPersonFormGroup.value.isMimmo ?? false
     };
-    this.personService.AddPerson(personToAdd);
+    // this.formGroup.GetRawValue();
+    this.personService.addPerson(personToAdd);
     this.router.navigate(['']);
   }
 }
