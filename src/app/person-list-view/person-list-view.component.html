@@ -5,9 +5,8 @@
   <div class="col">
     <button class="btn btn-success" (click)="HandleAddPersonCLick()">Add person</button>
   </div>
-
 </div>
 
 
-<app-person-list-item class="row border" *ngFor="let person of personList" [person]="person">
+<app-person-list-item class="row border align-items-center" *ngFor="let person of personList" [person]="person">
 </app-person-list-item>

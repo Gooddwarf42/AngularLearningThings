@@ -36,6 +36,8 @@ export class AddPersonComponent {
       name: this.addPersonFormGroup.value.name ?? '',
       surname: this.addPersonFormGroup.value.surname ?? '',
       age: this.addPersonFormGroup.value.age ?? -1,
+      email: "TODO",
+      phone: "TODO",
       isMimmo: this.addPersonFormGroup.value.isMimmo ?? false
     };
     // this.formGroup.GetRawValue();

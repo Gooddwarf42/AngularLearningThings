@@ -3,5 +3,7 @@ export interface Person {
   name: string;
   surname: string;
   age: number;
+  phone: string;
+  email: string;
   isMimmo: boolean;
 }

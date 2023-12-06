@@ -1,4 +1,5 @@
-<div class="col-2">Id: {{person.id}}</div>
-<div class="col-4">: {{person.name}}</div>
-<div class="col-4">Surname: {{person.surname}}</div>
-<div class="col-2"><button class="btn btn-primary" type="button" (click)="HandleCkick()">Dettagli</button></div>
+<div class="col-2 col-sm-1 bg-primary">Pic</div>
+<div class="col-5 col-sm-3 fw-bold"> {{person.name}} {{person.surname}}</div>
+<div class="col-5 col-sm-3" > <span class="text-secondary">Telefono: </span> {{person.phone}}</div>
+<div class="d-none d-sm-block col-sm-3"> <span class="text-secondary">Email: </span>  {{person.email}}</div>
+<div class="d-none d-sm-block col-sm-1"><button class="btn btn-primary" type="button" (click)="HandleCkick()">Dettagli</button></div>
