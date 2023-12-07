@@ -1,5 +1,28 @@
-<div class="col-2 col-sm-1 bg-primary">Pic</div>
-<div class="col-5 col-sm-3 fw-bold"> {{person.name}} {{person.surname}}</div>
-<div class="col-5 col-sm-3" > <span class="text-secondary">Telefono: </span> {{person.phone}}</div>
-<div class="d-none d-sm-block col-sm-3"> <span class="text-secondary">Email: </span>  {{person.email}}</div>
-<div class="d-none d-sm-block col-sm-1"><button class="btn btn-primary" type="button" (click)="HandleCkick()">Dettagli</button></div>
+<div class="col-2 col-sm-1 bg-primary border" (click)="HandleCkick()">Pic</div>
+
+
+<div class="col-10 col-sm-5 border">
+  <div class="row, border">
+    <div class="col border fw-bold">
+      {{person.name}} {{person.surname}}
+    </div>
+    <!-- This has to be shown only in mobile mode!-->
+    <div class="col border d-block d-sm-none">
+      <span class="text-secondary">Telefono: </span> {{person.phone}}
+    </div>
+  </div>
+</div>
+
+<!-- This is how to show details in Desktop mode, so hide it when smaller than sm-->
+<div class="col-sm-6 border d-none d-sm-block">
+  <div class="row border"><!-- Perché è più lunga di quella sotto?-->
+    <div class="col border">
+      <span class="text-secondary">Telefono: </span> {{person.phone}}
+    </div>
+  </div>
+  <div class="row, border">
+    <div class="col border">
+      <span class="text-secondary">Email: </span> {{person.email}}
+    </div>
+  </div>
+</div>
