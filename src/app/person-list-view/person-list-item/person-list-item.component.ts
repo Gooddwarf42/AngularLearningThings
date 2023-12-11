@@ -2,7 +2,7 @@ import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Person } from '../../home/person';
 import { Router } from '@angular/router';
-import { PhonePipe } from "../../home/phone.pipe";
+import { PhonePipe } from "../../home/pipes/phone.pipe";
 
 @Component({
     selector: 'app-person-list-item',

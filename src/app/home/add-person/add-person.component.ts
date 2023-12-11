@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule, ViewportScroller } from '@angular/common';
 import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { PersonService } from '../person.service';
+import { PersonService } from '../services/person.service';
 import { Person } from '../person';
 import { Router } from '@angular/router';
 

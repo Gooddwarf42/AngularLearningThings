@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { PersonService } from '../../home/person.service';
+import { PersonService } from '../../home/services/person.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Person } from '../../home/person';
 
