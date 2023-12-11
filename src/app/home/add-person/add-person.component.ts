@@ -33,9 +33,19 @@ export class AddPersonComponent {
     }
   )
 
-  handleSubmit(): void {
+  public handleSubmit(): void {
     const personToAdd: Person = this.addPersonFormGroupBello.getRawValue();
     this.personService.addPerson(personToAdd);
     this.router.navigate(['/home/list']);
+  }
+
+  public HandleBack() {
+    let confirmValue = true;
+    if (this.addPersonFormGroupBello.dirty) {
+      confirmValue = confirm("Dati non salvati, vuoi uscire?");
+    }
+    if (confirmValue) {
+      this.router.navigate(['/home/list']);
+    }
   }
 }
