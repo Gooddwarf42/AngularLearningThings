@@ -4,7 +4,7 @@
   </div>
 </div>
 
-<form class="row border" [formGroup]="addPersonFormGroupBello" (ngSubmit)="hendleSubmitBello()">
+<form class="row border" [formGroup]="addPersonFormGroupBello" (ngSubmit)="handleSubmit()">
   <div class="col-2 col-sm-1 border">
     <label for="id" class="form-label">
       Id
@@ -47,7 +47,10 @@
       Is Mimmo
     </label>
   </div>
-  <button class="btn btn-success">
+  <button type="button" class="btn btn-danger col-sm-6" (click)="HandleBack()">
+    Back
+  </button>
+  <button class="btn btn-success col-sm-6">
     Add me!
   </button>
 </form>

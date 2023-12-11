@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Person } from './person';
+import { Person } from '../person';
+import { Observable, map, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -8,9 +9,16 @@ export class PersonService {
 
   constructor() { }
 
-  public GetPeople(): Person[] {
-    return this._personList;
+  public GetPeople(): Observable<Person[]> {
+    return of(this._personList);
   }
+  public GetPeopleCount(): Observable<number> {
+    return this.GetPeople()
+      .pipe(
+        map(personList => personList.length)
+      );
+  }
+
   public GetPersonById(id: number): Person {
     return this._personList[id];
   }

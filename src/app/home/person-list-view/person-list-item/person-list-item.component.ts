@@ -2,7 +2,7 @@ import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Person } from '../../person';
 import { Router } from '@angular/router';
-import { PhonePipe } from "../../phone.pipe";
+import { PhonePipe } from "../../pipes/phone.pipe";
 
 @Component({
     selector: 'app-person-list-item',
@@ -12,7 +12,7 @@ import { PhonePipe } from "../../phone.pipe";
     imports: [CommonModule, PhonePipe]
 })
 export class PersonListItemComponent {
-  @Input() person!: Person;
+  @Input({required: true}) person!: Person;
 
 
   constructor(
@@ -22,6 +22,6 @@ export class PersonListItemComponent {
 
   // Handlers
   public HandleCkick(): void {
-    this.router.navigate(['/details', this.person.id]);
+    this.router.navigate(['/home/list/details', this.person.id]);
   }
 }

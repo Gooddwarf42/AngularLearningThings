@@ -1,9 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule, ViewportScroller } from '@angular/common';
 import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { PersonService } from '../person.service';
+import { PersonService } from '../services/person.service';
 import { Person } from '../person';
 import { Router } from '@angular/router';
+import { HasPendingChanges } from '../../has-pending-changes';
 
 @Component({
   selector: 'app-add-person',
@@ -12,7 +13,9 @@ import { Router } from '@angular/router';
   templateUrl: './add-person.component.html',
   styleUrl: './add-person.component.scss'
 })
-export class AddPersonComponent {
+export class AddPersonComponent implements HasPendingChanges, OnInit {
+
+  private personList : Person[] | undefined;
 
   constructor(
     private personService: PersonService,
@@ -21,9 +24,22 @@ export class AddPersonComponent {
   ) {
   }
 
+  public HasPendingChanges(): boolean {
+    return this.addPersonFormGroupBello.dirty;
+  }
+
+  ngOnInit(): void {
+    this.personService.GetPeople().subscribe({
+      next: value => {
+        this.personList = value;
+        this.addPersonFormGroupBello.patchValue({id: value.length})
+      }
+    });
+  }
+
   public addPersonFormGroupBello = this.formBuilder.group(
     {
-      id: this.formBuilder.nonNullable.control({ value: this.personService.GetPeople().length, disabled: true }),
+      id: this.formBuilder.nonNullable.control({ value: 0, disabled: true }),
       name: this.formBuilder.nonNullable.control(''),
       surname: this.formBuilder.nonNullable.control(''),
       age: this.formBuilder.nonNullable.control(0),
@@ -33,9 +49,13 @@ export class AddPersonComponent {
     }
   )
 
-  hendleSubmitBello(): void {
+  public handleSubmit(): void {
     const personToAdd: Person = this.addPersonFormGroupBello.getRawValue();
     this.personService.addPerson(personToAdd);
-    this.router.navigate(['']);
+    this.router.navigate(['/home/list']);
+  }
+
+  public HandleBack() {
+    this.router.navigate(['/home/list']);
   }
 }

@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { PersonService } from '../../person.service';
-import { ActivatedRoute } from '@angular/router';
+import { PersonService } from '../../services/person.service';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Person } from '../../person';
 
 @Component({
@@ -15,11 +15,17 @@ export class PersonDetailComponent {
 
   public person: Person;
 
+
   constructor(
     private route: ActivatedRoute,
-    private personService: PersonService
+    private personService: PersonService,
+    private router: Router,
   ) {
     const personId: number = Number(this.route.snapshot.params['id']);
     this.person = personService.GetPersonById(personId);
+  }
+
+  public handleBack(): void {
+    this.router.navigate(['/home/list']);
   }
 }

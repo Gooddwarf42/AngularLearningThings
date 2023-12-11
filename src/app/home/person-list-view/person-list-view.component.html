@@ -8,5 +8,5 @@
 </div>
 
 
-<app-person-list-item class="row border align-items-center" *ngFor="let person of personList" [person]="person">
+<app-person-list-item class="row border align-items-center" *ngFor="let person of personList | async" [person]="person">
 </app-person-list-item>
