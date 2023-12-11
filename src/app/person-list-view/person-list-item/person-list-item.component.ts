@@ -1,8 +1,8 @@
 import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Person } from '../../person';
+import { Person } from '../../home/person';
 import { Router } from '@angular/router';
-import { PhonePipe } from "../../phone.pipe";
+import { PhonePipe } from "../../home/phone.pipe";
 
 @Component({
     selector: 'app-person-list-item',

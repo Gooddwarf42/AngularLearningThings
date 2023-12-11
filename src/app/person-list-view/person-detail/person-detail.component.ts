@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { PersonService } from '../../person.service';
+import { PersonService } from '../../home/person.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Person } from '../../person';
+import { Person } from '../../home/person';
 
 @Component({
   selector: 'app-person-detail',
