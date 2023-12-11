@@ -4,6 +4,7 @@ import { AddPersonComponent } from './home/add-person/add-person.component';
 import { PersonDetailComponent } from './home/person-list-view/person-detail/person-detail.component';
 import { LoginComponent } from './login/login.component';
 import { loggedInGuard } from './logged-in.guard';
+import { leaveFormWithPendingChangesGuard } from './leave-form-with-pending-changes.guard';
 
 export const routes: Routes = [
   {
@@ -25,7 +26,8 @@ export const routes: Routes = [
   {
     path: 'home/list/add',
     component: AddPersonComponent,
-    title: 'Add new person'
+    title: 'Add new person',
+    canDeactivate: [leaveFormWithPendingChangesGuard]
   },
   {
     path: 'home/list/details/:id',

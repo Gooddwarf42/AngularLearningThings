@@ -4,6 +4,7 @@ import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule } from '@angul
 import { PersonService } from '../services/person.service';
 import { Person } from '../person';
 import { Router } from '@angular/router';
+import { HasPendingChanges } from '../../has-pending-changes';
 
 @Component({
   selector: 'app-add-person',
@@ -12,7 +13,7 @@ import { Router } from '@angular/router';
   templateUrl: './add-person.component.html',
   styleUrl: './add-person.component.scss'
 })
-export class AddPersonComponent implements OnInit {
+export class AddPersonComponent implements HasPendingChanges, OnInit {
 
   private personList : Person[] | undefined;
 
@@ -21,6 +22,10 @@ export class AddPersonComponent implements OnInit {
     private router: Router,
     private formBuilder: FormBuilder,
   ) {
+  }
+
+  public HasPendingChanges(): boolean {
+    return this.addPersonFormGroupBello.dirty;
   }
 
   ngOnInit(): void {
@@ -51,12 +56,6 @@ export class AddPersonComponent implements OnInit {
   }
 
   public HandleBack() {
-    let confirmValue = true;
-    if (this.addPersonFormGroupBello.dirty) {
-      confirmValue = confirm("Dati non salvati, vuoi uscire?");
-    }
-    if (confirmValue) {
-      this.router.navigate(['/home/list']);
-    }
+    this.router.navigate(['/home/list']);
   }
 }
