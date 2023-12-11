@@ -23,6 +23,6 @@ export class PersonListViewComponent {
   }
 
   HandleAddPersonCLick() {
-    this.router.navigate(['/add'])
+    this.router.navigate(['/home/list/add'])
   }
 }

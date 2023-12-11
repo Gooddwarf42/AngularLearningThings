@@ -22,6 +22,6 @@ export class PersonListItemComponent {
 
   // Handlers
   public HandleCkick(): void {
-    this.router.navigate(['/details', this.person.id]);
+    this.router.navigate(['/home/list/details', this.person.id]);
   }
 }
