@@ -1,1 +1,20 @@
-<p>login works!</p>
+<div class="row border text-center align-items-center">
+  <div class="col-sm-4 border">
+    <img src="https://picsum.photos/400" class="rounded-circle d-none d-sm-inline">
+    <img src="https://picsum.photos/200" class="rounded-circle d-inline d-sm-none">
+  </div>
+  <form class="col-sm-8 text-center text-sm-start border" [formGroup]="loginFormGroup"
+    (ngSubmit)="handleSubmit()">
+    <label for="username" class="form-label">
+      Username
+    </label>
+    <input id="username" type="text" class="form-control" formControlName="username" />
+    <label for="password" class="form-label">
+      Password
+    </label>
+    <input id="password" type="password" class="form-control" formControlName="password" />
+    <button class="btn btn-success">
+      Log in!
+    </button>
+  </form>
+</div>

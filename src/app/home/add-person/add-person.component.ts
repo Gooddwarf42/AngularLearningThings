@@ -33,7 +33,7 @@ export class AddPersonComponent {
     }
   )
 
-  hendleSubmitBello(): void {
+  handleSubmit(): void {
     const personToAdd: Person = this.addPersonFormGroupBello.getRawValue();
     this.personService.addPerson(personToAdd);
     this.router.navigate(['/home/list']);
