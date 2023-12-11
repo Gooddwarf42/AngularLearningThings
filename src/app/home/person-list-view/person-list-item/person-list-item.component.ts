@@ -12,7 +12,7 @@ import { PhonePipe } from "../../pipes/phone.pipe";
     imports: [CommonModule, PhonePipe]
 })
 export class PersonListItemComponent {
-  @Input() person!: Person;
+  @Input({required: true}) person!: Person;
 
 
   constructor(

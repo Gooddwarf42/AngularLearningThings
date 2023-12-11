@@ -3,6 +3,7 @@ import { PersonListViewComponent } from './home/person-list-view/person-list-vie
 import { AddPersonComponent } from './home/add-person/add-person.component';
 import { PersonDetailComponent } from './home/person-list-view/person-detail/person-detail.component';
 import { LoginComponent } from './login/login.component';
+import { loggedInGuard } from './logged-in.guard';
 
 export const routes: Routes = [
   {
@@ -18,7 +19,8 @@ export const routes: Routes = [
   {
     path: 'home/list',
     component: PersonListViewComponent,
-    title: 'View list'
+    title: 'View list',
+    canActivate: [loggedInGuard]
   },
   {
     path: 'home/list/add',

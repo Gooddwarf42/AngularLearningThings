@@ -4,6 +4,7 @@ import { PersonService } from '../services/person.service';
 import { Person } from '../person';
 import { PersonListItemComponent } from "./person-list-item/person-list-item.component";
 import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-person-list-view',
@@ -15,7 +16,7 @@ import { Router } from '@angular/router';
 export class PersonListViewComponent {
 
 
-  public personList: Person[] = [];
+  public personList: Observable<Person[]>;
   constructor(
     private personService: PersonService,
     private router: Router) {
