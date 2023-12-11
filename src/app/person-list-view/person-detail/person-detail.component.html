@@ -1,3 +1,35 @@
-<h1>Details of person n. {{person.id}}</h1>
-<p>This person is named {{person.name}} {{person.surname}}, and is {{person.age}} years old.</p>
-<p>Moreover this person is definitely <span *ngIf="!person.isMimmo">NOT</span> a Mimmo, therefore he/she is <span *ngIf="!person.isMimmo">NOT</span> worth of our esteem.</p>
+<div class="row border">
+  <div class="col-2 col-sm-1">
+    <button class="btn btn-secondary">
+      Indietro
+    </button>
+  </div>
+</div>
+
+<div class="row border text-center align-items-center">
+  <div class="col-sm-4 border">
+    <img src="https://picsum.photos/200" class="rounded-circle d-none d-sm-inline">
+    <img src="https://picsum.photos/100" class="rounded-circle d-inline d-sm-none">
+  </div>
+  <div class="col-sm-8 fw-bold fs-2 text-center text-sm-start border">
+    {{person.name}} {{person.surname}}
+  </div>
+</div>
+
+<div class="row border">
+  <div class="col-4 text-secondary text-end text-sm-center border">
+    Telefono
+  </div>
+  <div class="col-8  text-center text-sm-start border">
+    {{person.phone}}
+  </div>
+</div>
+<div class="row border">
+  <div class="col-4 text-secondary text-end text-sm-center border">
+    Email
+  </div>
+  <div class="col-8  text-center text-sm-start border">
+    {{person.email}}
+  </div>
+</div>
+

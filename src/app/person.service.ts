@@ -24,6 +24,8 @@ export class PersonService {
       name: "Gianni",
       surname: "Giannoni",
       age: 42,
+      phone: "3213236536",
+      email: "dragon@rawrmail.grr",
       isMimmo: false
     },
     {
@@ -31,6 +33,8 @@ export class PersonService {
       name: "Drago",
       surname: "Rosso",
       age: 10,
+      phone: "3213236536",
+      email: "dragon@rawrmail.grr",
       isMimmo: false
     },
     {
@@ -38,6 +42,8 @@ export class PersonService {
       name: "Viverna",
       surname: "Verde",
       age: 420,
+      phone: "3213236536",
+      email: "dragon@rawrmail.grr",
       isMimmo: false
     },
     {
@@ -45,6 +51,8 @@ export class PersonService {
       name: "Mimmo",
       surname: "Mangusta",
       age: 52,
+      phone: "3213236536",
+      email: "dragon@rawrmail.grr",
       isMimmo: true
     },
   ]

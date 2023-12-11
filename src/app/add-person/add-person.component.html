@@ -1,9 +1,53 @@
-<p>Adding a new person!</p>
-<form [formGroup]="addPersonFormGroup" (ngSubmit)="handleSubmit()">
-  <label for="id">Id:</label><input id="id" type="number" formControlName="id" />
-  <label for="name">Name:</label><input id="name" type="text" formControlName="name" />
-  <label for="surname">Surname:</label><input id="surname" type="text" formControlName="surname" />
-  <label for="age">Age:</label><input id="age" type="number" formControlName="age" />
-  <label for="isMimmo">Is Mimmo:</label><input id="isMimmo" type="checkbox" formControlName="isMimmo" />
-  <button>Add me!</button>
+<div class="row border align-items-center">
+  <div class="col border fs-bold fs-2 text-center">
+    <p>Adding a new person!</p>
+  </div>
+</div>
+
+<form class="row border" [formGroup]="addPersonFormGroupBello" (ngSubmit)="hendleSubmitBello()">
+  <div class="col-2 col-sm-1 border">
+    <label for="id" class="form-label">
+      Id
+    </label>
+    <input id="id" type="number" class="form-control" formControlName="id" />
+  </div>
+  <div class="col-10 col-sm-4 border">
+    <label for="name" class="form-label">
+      Name
+    </label>
+    <input id="name" type="text" class="form-control" formControlName="name" />
+  </div>
+  <div class="col-10 col-sm-4 border">
+    <label for="surname" class="form-label">
+      Surname
+    </label>
+    <input id="surname" type="text" class="form-control" formControlName="surname" />
+  </div>
+  <div class="col-2 col-sm-3 border">
+    <label for="age" class="form-label">
+      Age
+    </label>
+    <input id="age" type="number" class="form-control" formControlName="age" />
+  </div>
+  <div class="col-12 border">
+    <label for="phone" class="form-label">
+      Phone
+    </label>
+    <input id="phone" type="string" class="form-control" formControlName="phone" />
+  </div>
+  <div class="col-9 col-sm-5 border">
+    <label for="email" class="form-label">
+      Email
+    </label>
+    <input id="email" type="string" class="form-control" formControlName="email" />
+  </div>
+  <div class="col-3 col-sm-2 border form-check">
+    <input id="isMimmo" type="checkbox" class="form-check-input" formControlName="isMimmo" />
+    <label for="isMimmo" class="form-check-label">
+      Is Mimmo
+    </label>
+  </div>
+  <button class="btn btn-success">
+    Add me!
+  </button>
 </form>
