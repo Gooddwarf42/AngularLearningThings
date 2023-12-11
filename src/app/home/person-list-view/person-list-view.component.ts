@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { PersonService } from '../home/services/person.service';
-import { Person } from '../home/person';
+import { PersonService } from '../services/person.service';
+import { Person } from '../person';
 import { PersonListItemComponent } from "./person-list-item/person-list-item.component";
 import { Router } from '@angular/router';
 
