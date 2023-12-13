@@ -15,7 +15,7 @@ import { HasPendingChanges } from '../../has-pending-changes';
 })
 export class AddPersonComponent implements HasPendingChanges, OnInit {
 
-  private personList : Person[] | undefined;
+  private personList: Person[] | undefined;
 
   constructor(
     private personService: PersonService,
@@ -32,12 +32,12 @@ export class AddPersonComponent implements HasPendingChanges, OnInit {
     this.personService.GetPeople().subscribe({
       next: value => {
         this.personList = value;
-        this.addPersonFormGroupBello.patchValue({id: value.length})
+        this.addPersonFormGroupBello.patchValue({ id: value.length })
       }
     });
   }
 
-  public addPersonFormGroupBello = this.formBuilder.group(
+  public addPersonFormGroupBello: FormGroup = this.formBuilder.group(
     {
       id: this.formBuilder.nonNullable.control({ value: 0, disabled: true }),
       name: this.formBuilder.nonNullable.control(''),

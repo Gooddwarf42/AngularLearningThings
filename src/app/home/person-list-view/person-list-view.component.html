@@ -2,11 +2,11 @@
   <div class="col">
     <p class="fw-bold">Contatti</p>
   </div>
-  <form class="col">
+  <form class="col"[formGroup]="searchBarFormGroup">
     <label for="searchTerms" class="form-label">
       Search
     </label>
-    <input id="searchTerms" type="text" class="form-control" />
+    <input id="searchTerms" type="text" class="form-control" formControlName="searchTerms" />
   </form>
   <div class="col">
     <button class="btn btn-success" (click)="HandleAddPersonCLick()">Add person</button>
@@ -14,5 +14,5 @@
 </div>
 
 
-<app-person-list-item class="row border align-items-center" *ngFor="let person of personList | async" [person]="person">
+<app-person-list-item class="row border align-items-center" *ngFor="let person of personList$ | async" [person]="person">
 </app-person-list-item>
