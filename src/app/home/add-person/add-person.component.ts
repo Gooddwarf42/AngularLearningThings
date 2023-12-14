@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { CommonModule, ViewportScroller } from '@angular/common';
-import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { CommonModule,  } from '@angular/common';
+import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { PersonService } from '../services/person.service';
 import { Person } from '../person';
 import { Router } from '@angular/router';
@@ -41,16 +41,20 @@ export class AddPersonComponent implements HasPendingChanges, OnInit {
   public addPersonFormGroupBello: TypedFormGroup<Person> = this.formBuilder.group(
     {
       id: this.formBuilder.nonNullable.control({ value: 0, disabled: true }),
-      name: this.formBuilder.nonNullable.control(''),
-      surname: this.formBuilder.nonNullable.control(''),
+      name: this.formBuilder.nonNullable.control('', [Validators.required, Validators.minLength(1)]),
+      surname: this.formBuilder.nonNullable.control('', [Validators.required, Validators.minLength(1)]),
       age: this.formBuilder.nonNullable.control(0),
       phone: this.formBuilder.control<string>(''),
-      email: this.formBuilder.control<string>(''),
+      email: this.formBuilder.control<string>('', [Validators.email]),
       isMimmo: this.formBuilder.nonNullable.control(false),
     }
   )
 
   public handleSubmit(): void {
+    if (!this.addPersonFormGroupBello.valid) {
+      alert("Some fields are invalid!");
+      return;
+    }
     const personToAdd: Person = this.addPersonFormGroupBello.getRawValue();
     this.personService.addPerson(personToAdd);
     this.addPersonFormGroupBello.reset();
