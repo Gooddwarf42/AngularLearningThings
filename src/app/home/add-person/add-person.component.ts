@@ -45,7 +45,7 @@ export class AddPersonComponent implements HasPendingChanges, OnInit {
       surname: this.formBuilder.nonNullable.control('', [Validators.required, Validators.minLength(1)]),
       age: this.formBuilder.nonNullable.control(0),
       phone: this.formBuilder.control<string>(''),
-      email: this.formBuilder.control<string>('', [Validators.email]),
+      email: this.formBuilder.control<string>('', [Validators.required, Validators.email]),
       isMimmo: this.formBuilder.nonNullable.control(false),
     }
   )
@@ -72,6 +72,6 @@ export class AddPersonComponent implements HasPendingChanges, OnInit {
     return this.addPersonFormGroupBello.controls.surname;
   }
   get email() {
-    return this.addPersonFormGroupBello.controls.surname;
+    return this.addPersonFormGroupBello.controls.email;
   }
 }
