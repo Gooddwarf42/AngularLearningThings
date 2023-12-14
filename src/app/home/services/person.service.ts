@@ -12,8 +12,8 @@ export class PersonService {
   public GetPeople(): Observable<Person[]> {
     return of(this._personList);
   }
-  public GetPeopleCount(): Observable<number> {
-    return this.GetPeople()
+  public GetPeopleCount(list$ : Observable<Person[]>): Observable<number> {
+    return list$
       .pipe(
         map(personList => personList.length)
       );

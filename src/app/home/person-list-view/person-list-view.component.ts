@@ -17,31 +17,36 @@ import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 export class PersonListViewComponent implements OnInit, OnDestroy {
 
   public ngOnInit(): void {
-    const myObservable$ =
-      this.searchBarFormGroup.valueChanges.pipe(
+    this.subscription = this.searchBarFormGroup.valueChanges
+      .pipe(
         debounceTime(200),
+        distinctUntilChanged(),
         map(value => value.searchTerms),
         filter((value: string) => value.length > 2 || value.length === 0),
         tap((value: string) => console.log(`Ho scritto ${value}`)),
-        distinctUntilChanged(),
         map(value => this.personService.GetFilteredPeople(value)),
-      );
+      )
+      .subscribe(value => {
+        this.filteredPersonList$ = value;
+        this.filteredPersonListCount$ = this.personService.GetPeopleCount(this.filteredPersonList$)
+      });
+    this.searchBarFormGroup.enable()// hack to trigger first emission of the above observable
 
-    this.subscription = myObservable$.subscribe(value => this.filteredPersonList$ = value);
   }
   public ngOnDestroy(): void {
     this.subscription?.unsubscribe();
   }
 
   private subscription: Subscription | undefined;
-  public personList$: Observable<Person[]>;
-  public filteredPersonList$: Observable<Person[]> | undefined;
+  public filteredPersonList$: Observable<Person[]>;
+  public filteredPersonListCount$: Observable<number> | null;
 
   constructor(
     private personService: PersonService,
     private router: Router,
     private formBuilder: FormBuilder,) {
-    this.personList$ = personService.GetPeople();
+      this.filteredPersonListCount$ = null;
+      this.filteredPersonList$ = this.personService.GetPeople();
   }
 
   public searchBarFormGroup: FormGroup = this.formBuilder.group(
