@@ -1,12 +1,21 @@
 <div class="row">
-  <div class="col">
-    <p class="fw-bold">Contatti</p>
+  <div class="col-2 fw-bold fs-2">
+    Contatti
   </div>
-  <div class="col">
+  <form class="col"[formGroup]="searchBarFormGroup">
+    <label for="searchTerms" class="form-label">
+      Search
+    </label>
+    <input id="searchTerms" type="text" class="form-control" formControlName="searchTerms" />
+  </form>
+  <div class="col-2">
+    Found: {{filteredPersonListCount$ | async}}
+  </div>
+  <div class="col-2">
     <button class="btn btn-success" (click)="HandleAddPersonCLick()">Add person</button>
   </div>
 </div>
 
 
-<app-person-list-item class="row border align-items-center" *ngFor="let person of personList | async" [person]="person">
+<app-person-list-item class="row border align-items-center" *ngFor="let person of filteredPersonList$ | async" [person]="person">
 </app-person-list-item>

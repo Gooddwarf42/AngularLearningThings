@@ -1,29 +1,48 @@
 import { Injectable } from '@angular/core';
 import { Person } from '../person';
-import { Observable, map, of } from 'rxjs';
+import { BehaviorSubject, Observable, map, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PersonService {
 
-  constructor() { }
+  private peopleListSubject$: BehaviorSubject<Person[]>;
+  public peopleListSubjectObservable$: Observable<Person[]>;
 
-  public GetPeople(): Observable<Person[]> {
-    return of(this._personList);
+  constructor() {
+    this.peopleListSubject$ = new BehaviorSubject(this._personList);
+    this.peopleListSubjectObservable$ = this.peopleListSubject$.asObservable();
   }
-  public GetPeopleCount(): Observable<number> {
-    return this.GetPeople()
+
+  public getPeopleCount(list$: Observable<Person[]>): Observable<number> {
+    return list$
       .pipe(
         map(personList => personList.length)
       );
   }
+  public getFilteredPeople(searchTerms: string): Observable<Person[]> {
+    if (searchTerms.length === 0) {
+      return this.peopleListSubjectObservable$;
+    }
 
-  public GetPersonById(id: number): Person {
-    return this._personList[id];
+    const searchTermsLower = searchTerms.toLowerCase();
+    return this.peopleListSubjectObservable$
+      .pipe(
+        map(personArray =>
+          personArray.filter(p => p.name.toLowerCase().includes(searchTermsLower)
+            || p.surname.toLowerCase().includes(searchTermsLower))
+        )
+      )
   }
+
+  public getPersonById(id: number): Person{
+    return this._personList.find(p => p.id === id)!; //hacky!
+  }
+
   addPerson(personToAdd: Person): void {
     this._personList.push(personToAdd);
+    this.peopleListSubject$.next(this._personList);
   }
 
   private _personList: Person[] = [

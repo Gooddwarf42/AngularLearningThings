@@ -22,7 +22,7 @@ export class PersonDetailComponent {
     private router: Router,
   ) {
     const personId: number = Number(this.route.snapshot.params['id']);
-    this.person = personService.GetPersonById(personId);
+    this.person = personService.getPersonById(personId);
   }
 
   public handleBack(): void {
