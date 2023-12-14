@@ -1,27 +1,46 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Type } from '@angular/core';
 import { Person } from '../person';
-import { BehaviorSubject, Observable, map, of } from 'rxjs';
+import { BehaviorSubject, Observable, map, of, switchMap, zip } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PersonService {
 
-  private peopleListSubject$: BehaviorSubject<Person[]>;
+  private _peopleListSubject$: BehaviorSubject<Person[]>;
   public peopleListSubjectObservable$: Observable<Person[]>;
 
   constructor() {
-    this.peopleListSubject$ = new BehaviorSubject(this._personList);
-    this.peopleListSubjectObservable$ = this.peopleListSubject$.asObservable();
+    this._peopleListSubject$ = new BehaviorSubject(this._personList);
+    this.peopleListSubjectObservable$ = this._peopleListSubject$.asObservable();
   }
 
-  public getPeopleCount(list$: Observable<Person[]>): Observable<number> {
+
+  public getSearchResults(searchTerms: string): Observable<SearchResults> {
+    return this.getFilteredPeople(searchTerms)
+      .pipe(
+        switchMap(value => zip(of(value), this.getPeopleCount(of(value)))),
+        map(([filteredPeople, count]) => ({ result: filteredPeople, count: count }))
+      )
+
+  }
+
+  public getPersonById(id: number): Person {
+    return this._personList.find(p => p.id === id)!; //hacky!
+  }
+
+  public addPerson(personToAdd: Person): void {
+    this._personList.push(personToAdd);
+    this._peopleListSubject$.next(this._personList);
+  }
+
+  private getPeopleCount(list$: Observable<Person[]>): Observable<number> {
     return list$
       .pipe(
         map(personList => personList.length)
       );
   }
-  public getFilteredPeople(searchTerms: string): Observable<Person[]> {
+  private getFilteredPeople(searchTerms: string): Observable<Person[]> {
     if (searchTerms.length === 0) {
       return this.peopleListSubjectObservable$;
     }
@@ -36,14 +55,6 @@ export class PersonService {
       )
   }
 
-  public getPersonById(id: number): Person{
-    return this._personList.find(p => p.id === id)!; //hacky!
-  }
-
-  addPerson(personToAdd: Person): void {
-    this._personList.push(personToAdd);
-    this.peopleListSubject$.next(this._personList);
-  }
 
   private _personList: Person[] = [
     {
@@ -83,4 +94,8 @@ export class PersonService {
       isMimmo: true
     },
   ]
+}
+export interface SearchResults {
+  result: Person[],
+  count: number
 }

@@ -9,7 +9,7 @@
     <input id="searchTerms" type="text" class="form-control" formControlName="searchTerms" />
   </form>
   <div class="col-2">
-    Found: {{filteredPersonListCount$ | async}}
+    Found: {{(search$ | async)?.count}}
   </div>
   <div class="col-2">
     <button class="btn btn-success" (click)="HandleAddPersonCLick()">Add person</button>
@@ -17,5 +17,5 @@
 </div>
 
 
-<app-person-list-item class="row border align-items-center" *ngFor="let person of filteredPersonList$ | async" [person]="person">
+<app-person-list-item class="row border align-items-center" *ngFor="let person of (search$ | async)?.result" [person]="person">
 </app-person-list-item>
