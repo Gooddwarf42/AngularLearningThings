@@ -52,6 +52,7 @@ export class AddPersonComponent implements HasPendingChanges, OnInit {
   public handleSubmit(): void {
     const personToAdd: Person = this.addPersonFormGroupBello.getRawValue();
     this.personService.addPerson(personToAdd);
+    this.addPersonFormGroupBello.reset();
     this.router.navigate(['/home/list']);
   }
 

@@ -38,15 +38,13 @@ export class PersonListViewComponent implements OnInit, OnDestroy {
   }
 
   private subscription: Subscription | undefined;
-  public filteredPersonList$: Observable<Person[]>;
-  public filteredPersonListCount$: Observable<number> | null;
+  public filteredPersonList$: Observable<Person[]> | undefined;
+  public filteredPersonListCount$: Observable<number> | undefined;
 
   constructor(
     private personService: PersonService,
     private router: Router,
     private formBuilder: FormBuilder,) {
-      this.filteredPersonListCount$ = null;
-      this.filteredPersonList$ = this.personService.GetPeople();
   }
 
   public searchBarFormGroup: FormGroup = this.formBuilder.group(
