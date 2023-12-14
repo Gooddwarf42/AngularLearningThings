@@ -9,52 +9,52 @@
     <label for="id" class="form-label">
       Id
     </label>
-    <input id="id" type="number" class="form-control" formControlName="id" />
+    <input id="id" type="number" class="form-control" [formControlName]="formControlNames.id" />
   </div>
   <div class="col-10 col-sm-4 border">
     <label for="name" class="form-label">
       Name
     </label>
-    <input id="name" type="text" class="form-control" formControlName="name" required />
+    <input id="name" type="text" class="form-control" [formControlName]="formControlNames.name" required />
     <div *ngIf="name.invalid && (name.dirty || name.touched)" class="alert alert-danger">
-      <div *ngIf="name.errors?.['required']"> Name is required.</div>
-      <div *ngIf="name.errors?.['minlength']"> Name must be at least 1 characters long.</div>
+      <div *ngIf="name.errors?.['required']"> {{formControlNames.name}} is required.</div>
+      <div *ngIf="name.errors?.['minlength']"> {{formControlNames.name}} must be at least 1 characters long.</div>
     </div>
   </div>
   <div class="col-10 col-sm-4 border">
     <label for="surname" class="form-label">
       Surname
     </label>
-    <input id="surname" type="text" class="form-control" formControlName="surname" required />
+    <input id="surname" type="text" class="form-control" [formControlName]="formControlNames.surname" required />
     <div *ngIf="surname.invalid && (surname.dirty || surname.touched)" class="alert alert-danger">
-      <div *ngIf="surname.errors?.['required']"> Name is required.</div>
-      <div *ngIf="surname.errors?.['minlength']"> Name must be at least 1 characters long.</div>
+      <div *ngIf="surname.errors?.['required']"> {{formControlNames.surname}} is required.</div>
+      <div *ngIf="surname.errors?.['minlength']"> {{formControlNames.surname}} must be at least 1 characters long.</div>
     </div>
   </div>
   <div class="col-2 col-sm-3 border">
     <label for="age" class="form-label">
       Age
     </label>
-    <input id="age" type="number" class="form-control" formControlName="age" />
+    <input id="age" type="number" class="form-control" [formControlName]="formControlNames.age" />
   </div>
   <div class="col-12 border">
     <label for="phone" class="form-label">
       Phone
     </label>
-    <input id="phone" type="string" class="form-control" formControlName="phone" />
+    <input id="phone" type="string" class="form-control" [formControlName]="formControlNames.phone" />
   </div>
   <div class="col-9 col-sm-5 border">
     <label for="email" class="form-label">
       Email
     </label>
-    <input id="email" type="string" class="form-control" formControlName="email" required />
+    <input id="email" type="string" class="form-control" [formControlName]="formControlNames.email" required />
     <div *ngIf="email.invalid && (email.dirty || email.touched)" class="alert alert-danger">
-      <div *ngIf="email.errors?.['required']"> email is required.</div>
-      <div *ngIf="email.errors?.['email']"> email invalid.</div>
+      <div *ngIf="email.errors?.['required']"> {{formControlNames.email}} is required.</div>
+      <div *ngIf="email.errors?.['email']"> {{formControlNames.email}} invalid.</div>
     </div>
   </div>
   <div class="col-3 col-sm-2 border form-check">
-    <input id="isMimmo" type="checkbox" class="form-check-input" formControlName="isMimmo" />
+    <input id="isMimmo" type="checkbox" class="form-check-input" [formControlName]="formControlNames.isMimmo" />
     <label for="isMimmo" class="form-check-label">
       Is Mimmo
     </label>

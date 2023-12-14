@@ -5,7 +5,7 @@ import { PersonService } from '../services/person.service';
 import { Person } from '../person';
 import { Router } from '@angular/router';
 import { HasPendingChanges } from '../../has-pending-changes';
-import { TypedFormGroup } from '../../typedFormGroup';
+import { nameOfFigo, TypedFormGroup, TypedFormProperties } from '../../typedFormGroup';
 
 @Component({
   selector: 'app-add-person',
@@ -38,7 +38,7 @@ export class AddPersonComponent implements HasPendingChanges, OnInit {
     });
   }
 
-  public addPersonFormGroupBello: TypedFormGroup<Person> = this.formBuilder.group(
+  public addPersonFormGroupBello: TypedFormGroup<Person> = this.formBuilder.group<TypedFormProperties<Person>>(
     {
       id: this.formBuilder.nonNullable.control({ value: 0, disabled: true }),
       name: this.formBuilder.nonNullable.control('', [Validators.required, Validators.minLength(1)]),
@@ -49,6 +49,8 @@ export class AddPersonComponent implements HasPendingChanges, OnInit {
       isMimmo: this.formBuilder.nonNullable.control(false),
     }
   )
+
+  public readonly formControlNames = nameOfFigo<Person>();
 
   public handleSubmit(): void {
     if (!this.addPersonFormGroupBello.valid) {
