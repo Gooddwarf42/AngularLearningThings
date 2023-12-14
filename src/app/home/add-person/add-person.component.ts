@@ -5,6 +5,7 @@ import { PersonService } from '../services/person.service';
 import { Person } from '../person';
 import { Router } from '@angular/router';
 import { HasPendingChanges } from '../../has-pending-changes';
+import { TypedFormGroup } from '../../typedFormGroup';
 
 @Component({
   selector: 'app-add-person',
@@ -37,7 +38,7 @@ export class AddPersonComponent implements HasPendingChanges, OnInit {
     });
   }
 
-  public addPersonFormGroupBello: FormGroup = this.formBuilder.group(
+  public addPersonFormGroupBello: TypedFormGroup<Person> = this.formBuilder.group(
     {
       id: this.formBuilder.nonNullable.control({ value: 0, disabled: true }),
       name: this.formBuilder.nonNullable.control(''),
@@ -58,5 +59,15 @@ export class AddPersonComponent implements HasPendingChanges, OnInit {
 
   public HandleBack() {
     this.router.navigate(['/home/list']);
+  }
+
+  public get name(){
+    return this.addPersonFormGroupBello.controls.name;
+  }
+  get surname() {
+    return this.addPersonFormGroupBello.controls.surname;
+  }
+  get email() {
+    return this.addPersonFormGroupBello.controls.surname;
   }
 }
