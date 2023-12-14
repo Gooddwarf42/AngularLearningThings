@@ -19,6 +19,10 @@ export class PersonService {
       );
   }
   public GetFilteredPeople(searchTerms: string): Observable<Person[]> {
+    if (searchTerms.length == 0) {
+      return this.GetPeople();
+    }
+
     const searchTermsLower = searchTerms.toLowerCase();
     return this.GetPeople()
       .pipe(

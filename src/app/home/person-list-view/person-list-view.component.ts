@@ -21,13 +21,10 @@ export class PersonListViewComponent implements OnInit, OnDestroy {
       this.searchBarFormGroup.valueChanges.pipe(
         debounceTime(200),
         map(value => value.searchTerms),
-        map((value : string) => value.toLowerCase()),
-        filter((value : string) => value.length > 2),
+        filter((value: string) => value.length > 2 || value.length === 0),
         tap((value: string) => console.log(`Ho scritto ${value}`)),
         distinctUntilChanged(),
-        map(value => this.personService.GetPeople().pipe(
-          map(personArray => personArray.filter(p => p.name.toLowerCase().includes(value) || p.surname.toLowerCase().includes(value)))
-        )),
+        map(value => this.personService.GetFilteredPeople(value)),
       );
 
     this.subscription = myObservable$.subscribe(value => this.filteredPersonList$ = value);
