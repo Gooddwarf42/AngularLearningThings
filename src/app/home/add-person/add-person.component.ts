@@ -29,10 +29,10 @@ export class AddPersonComponent implements HasPendingChanges, OnInit {
   }
 
   ngOnInit(): void {
-    this.personService.GetPeople().subscribe({
+    this.personService.peopleListSubjectObservable$.subscribe({
       next: value => {
         this.personList = value;
-        this.addPersonFormGroupBello.patchValue({ id: value.length })
+        this.addPersonFormGroupBello.patchValue({ id: value.length }) //Of course this won't work as soon as deletion is supported
       }
     });
   }

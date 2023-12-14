@@ -22,13 +22,13 @@ export class PersonListViewComponent implements OnInit, OnDestroy {
         debounceTime(200),
         distinctUntilChanged(),
         map(value => value.searchTerms),
-        filter((value: string) => value.length > 2 || value.length === 0),
+        filter((value: string) => value.length > 1 || value.length === 0),
         tap((value: string) => console.log(`Ho scritto ${value}`)),
-        map(value => this.personService.GetFilteredPeople(value)),
+        map(value => this.personService.getFilteredPeople(value)),
       )
       .subscribe(value => {
         this.filteredPersonList$ = value;
-        this.filteredPersonListCount$ = this.personService.GetPeopleCount(this.filteredPersonList$)
+        this.filteredPersonListCount$ = this.personService.getPeopleCount(this.filteredPersonList$)
       });
     this.searchBarFormGroup.enable()// hack to trigger first emission of the above observable
 
