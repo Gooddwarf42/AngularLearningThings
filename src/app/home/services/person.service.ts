@@ -18,6 +18,16 @@ export class PersonService {
         map(personList => personList.length)
       );
   }
+  public GetFilteredPeople(searchTerms: string): Observable<Person[]> {
+    const searchTermsLower = searchTerms.toLowerCase();
+    return this.GetPeople()
+      .pipe(
+        map(personArray =>
+          personArray.filter(p => p.name.toLowerCase().includes(searchTermsLower)
+            || p.surname.toLowerCase().includes(searchTermsLower))
+        )
+      )
+  }
 
   public GetPersonById(id: number): Person {
     return this._personList[id];
